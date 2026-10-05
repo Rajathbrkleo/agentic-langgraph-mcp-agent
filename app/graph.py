@@ -3,7 +3,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langgraph.graph import StateGraph, START, END
 from app.models import get_llm
 from app.tools import get_customer_bill, get_bill_breakdown
-from app.tools import execute_registered_tool
+from app.mcp_client import call_mcp_tool
 
 class AgentState(TypedDict):
     conversation_id: str
@@ -419,20 +419,19 @@ def escalate_request(state: AgentState):
     }
 
 def execute_tool(state: AgentState):
-
     tool_name = state["tool_name"]
     customer_id = state["customer_id"]
 
-    result = execute_registered_tool(
+    result = call_mcp_tool(
         tool_name=tool_name,
         customer_id=customer_id,
     )
 
-    print("\n========== TOOL ==========")
+    print("\n========== MCP TOOL ==========")
     print("Tool:", tool_name)
     print("Customer:", customer_id)
     print("Result:", result)
-    print("==========================\n")
+    print("==============================\n")
 
     return {
         "tool_result": result

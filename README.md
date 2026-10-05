@@ -33,10 +33,9 @@ $env:ANTHROPIC_API_KEY = "sk-ant-3333333"
               │ get_customer_bill          │
               │ get_bill_breakdown         │
               └────────────────────────────┘
-			                 ↓
-       Generate Response
-               ↓
-        Genesys TTS
-               ↓
-           Customer
-		   
+			        ↓
+                     Generate Response
+                             ↓
+                         Genesys TTS
+                             ↓
+                          Customer
